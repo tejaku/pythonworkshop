@@ -1,0 +1,344 @@
+1.Regular expression¶
+2.oops
+3.Numpy module
+4.matplotlib
+5.pandas
+regular expressions:
+to check the data is valid or not
+data filters
+l=['abc','aca','ada']
+for i in l:
+    if i.endswith('a') and i.startswith('a'):
+        print(i)
+aca
+ada
+dir(str)
+['__add__',
+ '__class__',
+ '__contains__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__getnewargs__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__iter__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__mod__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__rmod__',
+ '__rmul__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ 'capitalize',
+ 'casefold',
+ 'center',
+ 'count',
+ 'encode',
+ 'endswith',
+ 'expandtabs',
+ 'find',
+ 'format',
+ 'format_map',
+ 'index',
+ 'isalnum',
+ 'isalpha',
+ 'isdecimal',
+ 'isdigit',
+ 'isidentifier',
+ 'islower',
+ 'isnumeric',
+ 'isprintable',
+ 'isspace',
+ 'istitle',
+ 'isupper',
+ 'join',
+ 'ljust',
+ 'lower',
+ 'lstrip',
+ 'maketrans',
+ 'partition',
+ 'replace',
+ 'rfind',
+ 'rindex',
+ 'rjust',
+ 'rpartition',
+ 'rsplit',
+ 'rstrip',
+ 'split',
+ 'splitlines',
+ 'startswith',
+ 'strip',
+ 'swapcase',
+ 'title',
+ 'translate',
+ 'upper',
+ 'zfill']
+import re
+dir(re)
+['A',
+ 'ASCII',
+ 'DEBUG',
+ 'DOTALL',
+ 'I',
+ 'IGNORECASE',
+ 'L',
+ 'LOCALE',
+ 'M',
+ 'MULTILINE',
+ 'RegexFlag',
+ 'S',
+ 'Scanner',
+ 'T',
+ 'TEMPLATE',
+ 'U',
+ 'UNICODE',
+ 'VERBOSE',
+ 'X',
+ '_MAXCACHE',
+ '__all__',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__spec__',
+ '__version__',
+ '_alphanum_bytes',
+ '_alphanum_str',
+ '_cache',
+ '_compile',
+ '_compile_repl',
+ '_expand',
+ '_locale',
+ '_pattern_type',
+ '_pickle',
+ '_subx',
+ 'compile',
+ 'copyreg',
+ 'enum',
+ 'error',
+ 'escape',
+ 'findall',
+ 'finditer',
+ 'fullmatch',
+ 'functools',
+ 'match',
+ 'purge',
+ 'search',
+ 'split',
+ 'sre_compile',
+ 'sre_parse',
+ 'sub',
+ 'subn',
+ 'template']
+syntax:
+re.methodname(pattern,data)
+pattren is format of required data
+data is given values
+s='aabcd'
+re.search('d',s)
+<_sre.SRE_Match object; span=(4, 5), match='d'>
+re.match('aa',s)
+<_sre.SRE_Match object; span=(0, 2), match='aa'>
+re.findall('a',s)
+['a', 'a']
+. (dot)
+it matches any single character
+l=['abc','aca','aaa','abba','']
+for i in l:
+    if re.search('.',i):
+        print(i)
+abc
+aca
+aaa
+abba
+l=['ab','aca','aaa','aa','abdu']
+for i in l:
+    if len(i)==3 or len(i)==2:
+        print(i)
+ab
+aca
+aaa
+aa
+for i in l:
+    if re.search('...',i):
+        print(i)
+aca
+aaa
+abdu
+* (star)
+minimum value 0 and maxvalue
++ (plus)
+min value 1
+^ (cap)
+startz with
+$ (doller)
+ends with
+\d:
+digits
+[]:
+specific values
+{min,max}:
+represents the min to max
+for i in l:
+    if re.search('a.a',i):
+        print(i)
+aca
+aaa
+for i in l:
+    if re.search('.*',i):
+        print(i)
+ab
+aca
+aaa
+aa
+abdu
+for i in l:
+    if re.search('u+',i):
+        print(i)
+abdu
+s='abc 123 hello 456'
+pattern= '\d+'
+li=re.findall(pattern,s)
+print(li)
+sum(list(map(int,li)))
+['123', '456']
+579
+names=['tikku','LLS','shirdi','kalesha','gopi','Teja','Anil','Avinash']
+pattern='^.{6}$'
+for name in names:
+    if re.match(pattern,name):
+        print(name)
+shirdi
+names=['tikku','LLS','shirdi','kalesha','gopi','Teja','Anil','Avinash']
+pattern='^A.'
+for name in names:
+    if re.match(pattern,name):
+        print(name)
+Anil
+Avinash
+names=['tikku','LLS','shirdi','kalesha','gopi','Teja','Anil','Avinash']
+pattern='^A.{3}$'
+pattern1='^[gA].{3}$'
+pattern2='^.+(sh)$'
+for name in names:
+    if re.match(pattern2,name):
+        print(name)
+​
+Avinash
+#How to valid a phone number
+#1.10 digits
+#2.starts with 6-9
+phnnum=['9949758269','9848655427','7364028202','1223456789']
+pattern='^[6-9]\d{9}$'
+for num in phnnum:
+    if re.match(pattern,num):
+        print(num)
+    
+9949758269
+9848655427
+7364028202
+phnnum1=['+919949758267']
+pattern1='^(\+91)[6-9]\d{9}$'
+for num in phnnum1:
+    if re.match(pattern1,num):
+        print(num)
++919949758267
+#how to valid mail
+#1.starts with alphabets
+#2.any digits
+#3.@gmail.com
+mail=input('Enter a mail id:')
+pattern='^[a-zA-Z]{1,15}[0-9]{0,10}[@](gmail\.com)$'
+if re.match(pattern,mail):
+    print('corrrect format of mail',mail)
+else:
+    print('wrong mail')
+Enter a mail id:19KQ1A@pace
+wrong mail
+oops
+class:blueprint or model of a object
+object:physical entity which is having behaviour and action
+constructor:special menthod which is usewd to create instance variable
+creation of class
+class ClassName: variables methods
+class Student:
+    x=10
+print(Student.x)
+10
+creation of object
+syntax:
+rv=ClassName()
+s=Student()
+s.x
+​
+10
+class Student:
+    x=10
+    def display(self,name):
+        print('hello{}'.format(name))
+s=Student()
+print(s.x)
+s.display('tej')
+10
+hellotej
+#constructor
+class Student:
+    x=10 #class variable or static
+    def __init__(self):
+        self.y=20 #instance var
+        print('This is constructor..')
+    def m1(self):
+        self.z=30 #local var
+        print('This is method')
+s = Student()
+print(s.x)
+print(s.y)
+s.m1()
+print(s.z)
+This is constructor..
+10
+20
+This is method
+30
+#constructor
+class Student:
+    x=10 #class variable or static
+    def __init__(self,name):
+        self.name=name
+        self.y=20 #instance var
+        print('This is constructor..')
+    def m1(self):
+        self.z=30 #local var
+        print('This is method')
+        print("my name is ",self.name)
+s = Student('tej')
+print(s.x)
+print(s.y)
+s.m1()
+print(s.z)
+This is constructor..
+10
+20
+This is method
+my name is  tej
+30
